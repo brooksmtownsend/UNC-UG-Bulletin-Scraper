@@ -1,0 +1,2 @@
+# UNC-UG-Bulletin-Scraper
+So apparently, UNC Chapel Hill does not make its course information public in a way that is easy for computer nerds to access and manipulate it for our own needs. With the use of PDFMiner (to turn the undergraduate bulletin into a txt file) and this script, I have managed to pull all of the course information out for use on PlanCarolina.com. If you use this script, I would super appreciate if you sent me a message to let me know that it was helpful!
