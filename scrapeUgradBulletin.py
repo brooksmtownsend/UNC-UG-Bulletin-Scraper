@@ -9,6 +9,8 @@ courseNum = "[0-9]{3}."
 departmentAndNumPattern = re.compile(department + "\s" + courseNum + "\s")
 departmentOddAndNumPattern = re.compile(departmentOdd + "\s" + courseNum + "\s")
 gradingStatusPattern = re.compile("Grading status:")
+genEdPattern = re.compile("Gen Ed:")
+requisitesPattern = re.compile("Requisites:")
 
 foundCourse = False
 stringArray = []
@@ -18,8 +20,8 @@ class Course(object):
     arrayOfAttributes = []
     department = ""
     courseNum = 0
-    title = ""
-    credits = ""
+    # title = ""
+    # credits = ""
     description = ""
     requirements = ""
     genEds = ""
@@ -29,22 +31,38 @@ class Course(object):
     def __init__(self, properties):
         self.arrayOfAttributes = properties
         self.extractInformation()
-        self.printAttributes()
+        # self.printAttributes()
 
     def extractInformation(self):
         departmentAndNum = self.arrayOfAttributes[0][:8]
         self.department = departmentAndNum[:4]
         self.courseNum = int(departmentAndNum[-3:])
 
+        for attr in self.arrayOfAttributes:
+            if gradingStatusPattern.match(attr):
+                self.gradingStatus = attr[16:]
+            else:
+                if requisitesPattern.match(attr):
+                    self.requirements = attr[12:]
+                else:
+                    if genEdPattern.match(attr):
+                        self.genEds = attr[8::1]
+                    else:
+                        self.description += attr
+
         # TODO: After retrieving a piece of information, remove it from the array.
         # TODO: Break down components using REGEX expressions with keywords
         # TODO: Eventually, only the description should be left.
 
     def printAttributes(self): # For debug purposes only
-        # print(self.department)
-        # print(self.courseNum)
-        for attr in self.arrayOfAttributes:
-            print(attr)
+        print(str(self.department) + str(self.courseNum))
+        print(self.genEds)
+        print(self.requirements)
+        print(self.gradingStatus)
+        # for attr in self.arrayOfAttributes:
+        #     print(attr)
+
+        # print("This many attributes: "+ str(len(self.arrayOfAttributes)))
 
 
 for line in ugradBulletin:
@@ -65,11 +83,21 @@ for line in ugradBulletin:
             stringArray.append(match.string)
             foundCourse = True
 
+# for course in coursesArray:
+#     print(str(course.department) + str(course.courseNum))
+#     print("Gen eds: "+ course.genEds)
+#     print("Requirements: " + course.requirements)
+#     print("Description: " + course.description[10:])
+
 
 # This was code to write all of the distinct departments to a file, could be re-used in the future for other pieces of info
-# text_file = open("departments.txt", "w")
-#
-# for course in coursesArray:
-#     text_file.write(course.department + "\n")
-#
-# text_file.close()
+text_file = open("departments.txt", "w")
+
+for course in coursesArray:
+     text_file.write(course.department + str(course.courseNum) + "\n")
+     text_file.write(course.genEds)
+     text_file.write(course.requirements)
+     text_file.write(course.description[10:])
+     text_file.write("\n")
+
+text_file.close()
