@@ -1,4 +1,5 @@
 import re
+import json
 
 ugradBulletin = open("./ugradBull")
 
@@ -91,13 +92,20 @@ for line in ugradBulletin:
 
 
 # This was code to write all of the distinct departments to a file, could be re-used in the future for other pieces of info
-text_file = open("departments.txt", "w")
+text_file = open("departments.json", "w")
+jsonCourse = []
 
 for course in coursesArray:
-     text_file.write(course.department + str(course.courseNum) + "\n")
-     text_file.write(course.genEds)
-     text_file.write(course.requirements)
-     text_file.write(course.description[10:])
-     text_file.write("\n")
+     dict = {'department': course.department,
+      'number': course.courseNum,
+      'gen eds': course.genEds,
+      'requirements': course.requirements,
+      'description': course.description[10:]
+      }
+     jsonCourse.append(dict)
+
+# print(jsonCourse)
+
+json.dump(jsonCourse, text_file)
 
 text_file.close()
