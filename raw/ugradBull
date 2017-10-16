@@ -36667,9 +36667,7 @@ Required preparation, a first formal course in computer programming
 design, classes, interfaces, packages, inheritance, delegation, observers,
 MVC (model view controller), exceptions, assertions.
 Gen Ed: QR.
-Grading status: Letter grade.
-
-COMP 410. Data Structures. 3 Credits.
+Grading status: Letter grade.COMP 410. Data Structures. 3 Credits.
 The analysis of data structures and their associated algorithms. Abstract
 data types, lists, stacks, queues, trees, and graphs. Sorting, searching,
 hashing.
