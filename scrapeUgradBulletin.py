@@ -21,7 +21,8 @@ coursesArray = []
 class Course(object):
     arrayOfAttributes = []
     department = ""
-    courseNum = ""
+    courseNum = 0
+    modifier = ""
     description = ""
     requirements = ""
     genEds = ""
@@ -36,10 +37,21 @@ class Course(object):
     def extractInformation(self):
         departmentAndNum = self.arrayOfAttributes[0][:9]
         self.department = departmentAndNum[:4]
-        if (departmentAndNum[-1:] == "."):
-            self.courseNum = departmentAndNum[-4:][:3]
+        if (departmentAndNum[-1:] == "." or departmentAndNum[-2:] == ". "):
+            if (departmentAndNum[-2:] == "H."
+                or departmentAndNum[-2:] == "L."):
+                self.modifier = departmentAndNum[-2:][:-1]
+                self.courseNum = int(departmentAndNum[-4:][:-2])
+            else:
+                if (departmentAndNum[-4:][-2:] == ". "):
+                    self.courseNum = int(departmentAndNum[-4:][:2])
+                else:
+                    self.courseNum = int(departmentAndNum[-4:][:3])
         else:
-            self.courseNum = departmentAndNum[-4:]
+            if (departmentAndNum[-1:] == "H"
+                or departmentAndNum[-1:] == "L"):
+                self.modifier = departmentAndNum[-1:]
+                self.courseNum = int(departmentAndNum[-4:][:-1])
 
         for attr in self.arrayOfAttributes:
             if gradingStatusPattern.match(attr):
@@ -85,6 +97,7 @@ jsonCourse = []
 for course in coursesArray:
      dict = {'department': course.department,
       'number': course.courseNum,
+      'modifier': course.modifier,
       'gen eds': course.genEds,
       'requirements': course.requirements,
       'description': course.description[10:]

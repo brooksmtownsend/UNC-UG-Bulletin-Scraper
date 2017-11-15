@@ -1,0 +1,5 @@
+1. put raw text file in ./raw
+2. run python script with ./raw/rawFile ./json/jsonFile
+3. beautify output json
+4. remove /n's
+5. Change EE-Mentored Research's to EE
