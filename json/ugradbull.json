@@ -13601,6 +13601,14 @@
   },
   {
     "department": "COMP",
+    "number": 410,
+    "modifier": "",
+    "gen eds": "",
+    "requirements": "Prerequisite, COMP 401. ",
+    "description": "Data Structures. 3 Credits. The analysis of data structures and their associated algorithms. Abstract data types, lists,stacks, queues, trees, and graphs. Sorting, searching, hashing."
+  },
+  {
+    "department": "COMP",
     "number": 411,
     "modifier": "",
     "gen eds": "",
@@ -13622,6 +13630,14 @@
     "gen eds": "",
     "requirements": "Prerequisites, COMP 401, 410, and 411. ",
     "description": "Internet Services and Protocols. 3 Credits. Application-level protocols HTTP, SMTP, FTP, transport protocols TCP and UDP, and the network-level protocol IP. Internet architecture, naming, addressing, routing, and DNS. Sockets programming. Physical-layer technologies. Ethernet, ATM, and wireless. "
+  },
+  {
+    "department": "COMP",
+    "number": 435,
+    "modifier": "",
+    "gen eds": "",
+    "requirements": "Prerequisites, COMP 401, 410, and 411.",
+    "description": "Computer Security Concepts. 3 Credits.Introduction to topics in computer security including confidentiality, integrity, availability, authentication policies, basic cryptography and cryptographic protocols, ethics, and privacy. A student may not receive credit for this course after receiving credit for COMP 535."
   },
   {
     "department": "COMP",
